@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:KiviMassaApp"
         mc:Ignorable="d"
         Title="Massaohjelma" Height="828" Width="1189.5"
-        WindowState="Maximized" Closed="Massaohjelma_Closed" Topmost="True">
+        WindowState="Maximized" Closed="Massaohjelma_Closed">
 
     <!--Näppäinkomennot-->
     <Window.CommandBindings>
@@ -36,9 +36,6 @@
                     <MenuItem Tag="lataaSeula" x:Name="OpenSeula" Header="Lataa seula-arvot" Click="LataaSeula_Click"></MenuItem>
                     <MenuItem Tag="lataaOhje" x:Name="OpenOhje" Header="Lataa ohjearvot" Click="LataaOhje_Click"></MenuItem>
                     <MenuItem Tag="lataaTiedot" x:Name="OpenTeksti" Header="Lataa tiedot" Click="LataaTiedot_Click"></MenuItem>
-                </MenuItem>
-                <MenuItem Header="Ohje" IsTabStop="False">
-
                 </MenuItem>
             </Menu>
         </DockPanel>
@@ -91,11 +88,16 @@
             <Label Content="Tutkija:" RenderTransformOrigin="0.896,0.769" Canvas.Left="482" Canvas.Top="104"></Label>
             <TextBox Name="tutkija" Height="21" Width="121" Canvas.Left="586" Canvas.Top="109" TabIndex="15"></TextBox>
 
-            <Label Content="Valitse logo:" Canvas.Left="482" Canvas.Top="133"></Label>
-            <ComboBox Canvas.Left="586" Canvas.Top="136" Width="120" Name="Kuvat" IsTabStop="False">
+            <Label Content="Valitse logo ja leima:" Canvas.Left="479" Canvas.Top="140"></Label>
+            <ComboBox Canvas.Left="602" Canvas.Top="131" Width="106" Name="Kuvat" IsTabStop="False">
                 <ComboBoxItem Content="Savonialogo 1" Name="Kuva1" IsSelected="True" Tag=".\Asetukset\kuvat\logot\savonialogo1.jpg"></ComboBoxItem>
                 <ComboBoxItem Content="Savonialogo 2" Name="Kuva5" Tag=".\Asetukset\kuvat\logot\savonialogo5.jpg"></ComboBoxItem>
                 <ComboBoxItem Content="Savonialogo 3 engl" Name="Kuva6" Tag=".\Asetukset\kuvat\logot\savonialogo6.jpg"></ComboBoxItem>
+            </ComboBox>
+            <ComboBox x:Name="leimat" Canvas.Left="602" Canvas.Top="153" Width="106" Height="23">
+                <ComboBoxItem x:Name="Leima1" Content="SFS-EN 933-1" IsSelected="True" Tag="SFS-EN 933-1"></ComboBoxItem>
+                <ComboBoxItem x:Name="Leima2" Content="SFS-EN 12697-1" Tag="SFS-EN 12697-1"></ComboBoxItem>
+                <ComboBoxItem x:Name="Leima3" Content="SFS-EN 12697-2" Tag="SFS-EN 12697-2 "></ComboBoxItem>
             </ComboBox>
 
             <Button Content="Tallenna osoitetiedot" Name="tallennaOsoitetiedot" Canvas.Left="250" Canvas.Top="130" Click="tallennaOsoitetiedot_Click" Width="120" Height="26" Background="#FFDBFAFF" IsTabStop="False"></Button>

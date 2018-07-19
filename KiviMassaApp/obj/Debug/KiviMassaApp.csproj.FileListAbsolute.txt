@@ -1,18 +1,9 @@
-Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\bin\Debug\KiviMassaApp.exe.config
-Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\bin\Debug\KiviMassaApp.exe
-Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\bin\Debug\KiviMassaApp.pdb
-Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\obj\Debug\KiviMassaApp.csprojResolveAssemblyReference.cache
 Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\obj\Debug\MainWindow.g.cs
 Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\obj\Debug\App.g.cs
-Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\obj\Debug\KiviMassaApp_MarkupCompile.cache
-Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\obj\Debug\KiviMassaApp_MarkupCompile.lref
 Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\obj\Debug\MainWindow.baml
-Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\obj\Debug\KiviMassaApp.g.resources
 Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\obj\Debug\KiviMassaApp.Properties.Resources.resources
 Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\obj\Debug\KiviMassaApp.csproj.GenerateResource.Cache
 Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\obj\Debug\KiviMassaApp.csproj.CoreCompileInputs.cache
-Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\obj\Debug\KiviMassaApp.exe
-Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\obj\Debug\KiviMassaApp.pdb
 Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\obj\Debug\Kiviohjelma.g.cs
 Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\obj\Debug\Kiviohjelma.baml
 Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\obj\Debug\Massaohjelma.g.cs
@@ -340,3 +331,31 @@ C:\Users\s698915\Desktop\Lähdekoodi\KiviMassaApp\obj\Debug\KiviMassaApp.csproj.
 C:\Users\s698915\Desktop\Lähdekoodi\KiviMassaApp\obj\Debug\KiviMassaApp.csproj.CopyComplete
 C:\Users\s698915\Desktop\Lähdekoodi\KiviMassaApp\obj\Debug\Kivi- ja Massaseulonta.exe
 C:\Users\s698915\Desktop\Lähdekoodi\KiviMassaApp\obj\Debug\Kivi- ja Massaseulonta.pdb
+Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\bin\Debug\Kivi- ja Massaseulonta.exe.config
+Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\bin\Debug\Kivi- ja Massaseulonta.exe
+Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\bin\Debug\Kivi- ja Massaseulonta.pdb
+Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\bin\Debug\Newtonsoft.Json.dll
+Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\bin\Debug\OxyPlot.dll
+Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\bin\Debug\OxyPlot.Wpf.dll
+Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\bin\Debug\PdfSharp.Charting.dll
+Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\bin\Debug\PdfSharp.dll
+Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\bin\Debug\Newtonsoft.Json.xml
+Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\bin\Debug\OxyPlot.pdb
+Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\bin\Debug\OxyPlot.xml
+Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\bin\Debug\OxyPlot.Wpf.pdb
+Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\bin\Debug\OxyPlot.Wpf.xml
+Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\bin\Debug\de\PdfSharp.resources.dll
+Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\bin\Debug\de\PdfSharp.Charting.resources.dll
+Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\obj\Debug\KiviMassaApp.csprojAssemblyReference.cache
+Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\obj\Debug\KiviKayra.g.cs
+Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\obj\Debug\MassaKayra.g.cs
+Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\obj\Debug\SeulaMuokkausIkkuna.g.cs
+Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\obj\Debug\Kivi- ja Massaseulonta_MarkupCompile.cache
+Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\obj\Debug\Kivi- ja Massaseulonta_MarkupCompile.lref
+Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\obj\Debug\KiviKayra.baml
+Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\obj\Debug\MassaKayra.baml
+Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\obj\Debug\SeulaMuokkausIkkuna.baml
+Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\obj\Debug\Kivi- ja Massaseulonta.g.resources
+Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\obj\Debug\KiviMassaApp.csproj.CopyComplete
+Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\obj\Debug\Kivi- ja Massaseulonta.exe
+Z:\Harjoittelu2\KiviMassaApp\KiviMassaApp\obj\Debug\Kivi- ja Massaseulonta.pdb

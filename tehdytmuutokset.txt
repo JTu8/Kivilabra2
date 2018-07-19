@@ -1,0 +1,24 @@
+Kiviohjelma:
+	-Layouttiin lisätty leiman valintavalikko
+	-XAML tiedostosta poistetto topmost="true"
+	-Ohje poistettu menupalkista
+
+Massaohjelma:
+	-Layouttiin lisätty leiman valintavalikko
+	-XAML tiedostosta poistetto topmost="true"
+	-Ohje poistettu menupalkista
+
+KiviohjelmaPDF:
+	-Muutos tehty leimanvalintaan
+	string leima;
+            leima = ((ComboBoxItem)kiviohjelma.leimat.SelectedItem).Tag.ToString();
+            Console.WriteLine(leima);
+            graphics.DrawString(leima, textFont, XBrushes.Black, new XRect(450, 40, page.Width, page.Height), XStringFormats.TopLeft);	
+
+
+MassaohjelmaPDF:
+	-Muutos tehty leimanvalintaan
+	string leima;
+            leima = ((ComboBoxItem)massaOhjelma.leimat.SelectedItem).Tag.ToString();
+            Console.WriteLine(leima);
+            graphics.DrawString(leima, textFont, XBrushes.Black, new XRect(150, 30, page.Width, page.Height), XStringFormats.TopCenter);

@@ -8,7 +8,7 @@
         Title="Kiviohjelma" Height="736" Width="1271"
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch"
-        WindowState="Maximized" Closed="Kiviohjelma_Closed" Topmost="True" 
+        WindowState="Maximized" Closed="Kiviohjelma_Closed"
         Name="kiviohjelma">
     <!--="WidthAndHeight"-->
 
@@ -39,9 +39,6 @@
                         <MenuItem Tag="lataaSeula" x:Name="OpenSeula" Header="Lataa seula-arvot" Click="LataaSeula_Click"></MenuItem>
                         <MenuItem Tag="lataaOhje" x:Name="OpenOhje" Header="Lataa ohjearvot" Click="LataaOhje_Click"></MenuItem>
                         <MenuItem Tag="lataaTiedot" x:Name="OpenTeksti" Header="Lataa tiedot" Click="LataaTiedot_Click"></MenuItem>
-                    </MenuItem>
-                    <MenuItem Header="Ohje" IsTabStop="False">
-
                     </MenuItem>
                 </Menu>
             </DockPanel>
@@ -78,12 +75,17 @@
             <Label Content="Lähiosoite:" Canvas.Top="14" Canvas.Left="303"/>
             <TextBox x:Name="lahiosoite" Height="22" Width="163" Canvas.Left="380" Canvas.Top="16" TabIndex="12" Background="#FFDBFAFF"/>
             <Button x:Name="tallennaOsoitteet" Content="Tallenna" Canvas.Left="583" Canvas.Top="70" Height="22" Width="74" Click="tallennaOsoitteet_Click" TabIndex="16" Background="#FFDBFAFF" IsTabStop="False" />
-            <ComboBox Canvas.Left="562" Canvas.Top="38" Width="120" x:Name="Kuvat" TabIndex="15" IsTabStop="False">
+            <ComboBox Canvas.Left="562" Canvas.Top="22" Width="120" x:Name="Kuvat" TabIndex="15" IsTabStop="False">
                 <ComboBoxItem Content="Savonialogo 1" x:Name="Kuva1" IsSelected="True" Tag=".\Asetukset\kuvat\logot\savonialogo1.jpg"/>
                 <ComboBoxItem Content="Savonialogo 2" x:Name="Kuva5" Tag=".\Asetukset\kuvat\logot\savonialogo5.jpg"/>
                 <ComboBoxItem Content="Savonialogo 3 engl." x:Name="Kuva6" Tag=".\Asetukset\kuvat\logot\savonialogo6.jpg"/>
             </ComboBox>
-            <Label Content="Valitse logo" Canvas.Left="586" Canvas.Top="10"/>
+            <ComboBox x:Name="leimat" Canvas.Left="562" Canvas.Top="44" Width="120">
+                <ComboBoxItem x:Name="Leima1" Content="SFS-EN 933-1" IsSelected="True" Tag="SFS-EN 933-1"></ComboBoxItem>
+                <ComboBoxItem x:Name="Leima2" Content="SFS-EN 12697-1" Tag="SFS-EN 12697-1"></ComboBoxItem>
+                <ComboBoxItem x:Name="Leima3" Content="SFS-EN 12697-2" Tag="SFS-EN 12697-2 "></ComboBoxItem>
+            </ComboBox>
+            <Label Content="Valitse logo ja leima" Canvas.Left="562"/>
             <TextBox x:Name="osoite" Height="22" Width="163" Canvas.Left="380" Canvas.Top="42" TabIndex="13" Background="#FFDBFAFF"/>
             <Label Content="Osoite:" Canvas.Top="38" Canvas.Left="303"/>
             <TextBox x:Name="puh" Height="22" Width="163" Canvas.Left="380" Canvas.Top="68" TabIndex="14" Background="#FFDBFAFF"/>

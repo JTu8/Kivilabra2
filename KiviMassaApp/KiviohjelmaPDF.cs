@@ -88,7 +88,11 @@ namespace KiviMassaApp
             graphics.DrawString("KIVIAINESTUTKIMUS", otsikkoFont, XBrushes.Black, new XRect(280, 50, page.Width, page.Height), XStringFormats.TopLeft);
             graphics.DrawString(seulontaHolder, textFont, XBrushes.Black, new XRect(450, 55, page.Width, page.Height), XStringFormats.TopLeft);
 
-            graphics.DrawString("SFS-EN 933-1", textFont, XBrushes.Black, new XRect(450, 40, page.Width, page.Height), XStringFormats.TopLeft);
+
+            string leima;
+            leima = ((ComboBoxItem)kiviohjelma.leimat.SelectedItem).Tag.ToString();
+            Console.WriteLine(leima);
+            graphics.DrawString(leima, textFont, XBrushes.Black, new XRect(450, 40, page.Width, page.Height), XStringFormats.TopLeft);
 
             graphics.DrawString("Työmaa", textFont, XBrushes.Black, new XRect(50, 80, page.Width, page.Height), XStringFormats.TopLeft);
             graphics.DrawString(tyomaaHolder, textFont, XBrushes.Black, new XRect(100, 80, page.Width, page.Height), XStringFormats.TopLeft);

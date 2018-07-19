@@ -79,8 +79,11 @@ namespace KiviMassaApp
             graphics.DrawString(puhHolder, osoiteFont, XBrushes.Black, new XRect(50, 48, page.Width, page.Height), XStringFormats.TopLeft);
 
 
+            string leima;
+            leima = ((ComboBoxItem)massaOhjelma.leimat.SelectedItem).Tag.ToString(); //Asettaa comboboxista valitun leiman tagin mukaan
+            Console.WriteLine(leima);
+            graphics.DrawString(leima, textFont, XBrushes.Black, new XRect(150, 30, page.Width, page.Height), XStringFormats.TopCenter);
 
-            graphics.DrawString("PANK 4102", textFont, XBrushes.Black, new XRect(150, 30, page.Width, page.Height), XStringFormats.TopCenter);
             graphics.DrawString("P Ä Ä L L Y S T E T U T K I M U S", otsikkoFont, XBrushes.Black, new XRect(50, 60, page.Width, page.Height), XStringFormats.TopLeft);
 
             graphics.DrawString("Urakka", textFont, XBrushes.Black, new XRect(50, 90, page.Width, page.Height), XStringFormats.TopLeft);
