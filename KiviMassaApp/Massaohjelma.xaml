@@ -1,0 +1,323 @@
+﻿<Window x:Name="massaohjelma" x:Class="KiviMassaApp.Massaohjelma"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KiviMassaApp"
+        mc:Ignorable="d"
+        Title="Massaohjelma" Height="828" Width="1189.5"
+        WindowState="Maximized" Closed="Massaohjelma_Closed" Topmost="True">
+
+    <!--Näppäinkomennot-->
+    <Window.CommandBindings>
+        <CommandBinding Command="Open" Executed="CommandBinding_Open"></CommandBinding>
+        <CommandBinding Command="Save" Executed="CommandBinding_Save"></CommandBinding>
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Key="O" Modifiers="Ctrl" Command="Open"></KeyBinding>
+        <KeyBinding Key="S" Modifiers="Ctrl" Command="Save"></KeyBinding>
+        <KeyBinding Key="P" Modifiers="Ctrl" Command="Print"></KeyBinding>
+    </Window.InputBindings>
+
+    <!--Menuvalikko-->
+
+    <Canvas Height="20" Canvas.Top="-262" Width="370" Canvas.Left="-6" Margin="0,0,1552,1045">
+
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="Tiedosto" IsTabStop="False">
+                    <MenuItem x:Name="SaveFiles" Header="Tallenna" Command="Save" InputGestureText="Ctrl + S"></MenuItem>
+                    <MenuItem x:Name="CreatePDF" Header="Luo PDF" Click="CreatePDF_Click"></MenuItem>
+                    <MenuItem x:Name="ExitProgram" Header="Lopeta" Click="ExitProgram_Click"></MenuItem>
+
+                </MenuItem>
+                <MenuItem Name="lataa" Header="Lataa" IsTabStop="False">
+                    <MenuItem Tag="lataaKaikki" x:Name="OpenFileExplorer" Header="Lataa kaikki" InputGestureText="Ctrl + O" Click="LataaKaikki_Click"></MenuItem>
+                    <MenuItem Tag="lataaSeula" x:Name="OpenSeula" Header="Lataa seula-arvot" Click="LataaSeula_Click"></MenuItem>
+                    <MenuItem Tag="lataaOhje" x:Name="OpenOhje" Header="Lataa ohjearvot" Click="LataaOhje_Click"></MenuItem>
+                    <MenuItem Tag="lataaTiedot" x:Name="OpenTeksti" Header="Lataa tiedot" Click="LataaTiedot_Click"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Ohje" IsTabStop="False">
+
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+
+        <!--Tiedot lohko-->
+        <Canvas Height="176" Canvas.Top="23" Width="718" Background="Bisque" Name="tietoArvot" PreviewKeyDown="tietoArvot_PreviewKeyDown">
+            <Label Content="Sekoitusasema:"></Label>
+            <TextBox Name="sekoitusAsema" Canvas.Left="96" Height="21" Width="145" Canvas.Top="5" TabIndex="1"/>
+
+            <Label Content="Lisätietoja:" Canvas.Top="26"></Label>
+            <TextBox Name="lisatietoja" Canvas.Left="96" Height="21" Width="145" Canvas.Top="31" TabIndex="2"/>
+
+            <Label Content="Alempi otsikko:" Canvas.Top="52"/>
+            <TextBox Name="alempiOtsikko" Height="21" Width="145" Canvas.Left="96" Canvas.Top="57" Background="#FFDBFAFF" TabIndex="3"></TextBox>
+
+            <Label Content="Lähiosoite:" Canvas.Top="78"></Label>
+            <TextBox Name="lahiOsoite" Height="21" Width="145" Canvas.Left="96" Canvas.Top="83" Background="#FFDBFAFF" TabIndex="4"></TextBox>
+
+            <Label Content="Osoite:" Canvas.Top="104"></Label>
+            <TextBox Name="osoite" Height="21" Width="145" Canvas.Left="96" Canvas.Top="109" Background="#FFDBFAFF" TabIndex="5"></TextBox>
+
+            <Label Content="Puh:" Canvas.Top="130"></Label>
+            <TextBox Name="puh" Height="21" Width="145" Canvas.Left="96" Canvas.Top="135" Background="#FFDBFAFF" TabIndex="6"></TextBox>
+
+            <Label Content="Päällyste:" Canvas.Left="265" Canvas.Top="1"></Label>
+            <TextBox Name="paallyste" Canvas.Left="346" Height="21" Width="121" Canvas.Top="6" TabIndex="7"/>
+
+            <Label Content="Päiväys:" Canvas.Left="265" Canvas.Top="26"></Label>
+            <TextBox Name="paivays" Canvas.Left="346" Height="21" Width="121" Canvas.Top="32" TabIndex="8"/>
+
+            <Label Content="Urakka:" Canvas.Left="265" Canvas.Top="52"></Label>
+            <TextBox Name="urakka" Canvas.Left="346" Height="21" Width="121" Canvas.Top="58" TabIndex="9"/>
+
+            <Label Content="Työkohde:" Canvas.Left="266" Canvas.Top="78"></Label>
+            <TextBox Name="tyokohde" Canvas.Left="346" Height="21" Width="121" Canvas.Top="83" TabIndex="10"/>
+
+            <Label Content="Näyte nro:" Canvas.Left="482" Canvas.Top="1"></Label>
+            <TextBox Name="nayteNro" Canvas.Left="586" Height="21" Width="121" Canvas.Top="5" TabIndex="11"/>
+
+            <Label Content="Klo:" Canvas.Left="482" Canvas.Top="27"></Label>
+            <TextBox Name="klo" Canvas.Left="586" Height="21" Width="121" Canvas.Top="31" TabIndex="12"/>
+
+            <Label Content="Paalu/kaista:" Canvas.Left="482" Canvas.Top="53"></Label>
+            <TextBox Name="paaluKaista" Canvas.Left="586" Height="21" Width="121" Canvas.Top="57" TabIndex="13"/>
+
+            <Label Content="Näytteen ottaja:" Canvas.Left="482" Canvas.Top="78"></Label>
+
+            <TextBox Name="naytteenOttaja" Canvas.Left="586" Height="21" Width="121" Canvas.Top="83" TabIndex="14"/>
+
+            <Label Content="Tutkija:" RenderTransformOrigin="0.896,0.769" Canvas.Left="482" Canvas.Top="104"></Label>
+            <TextBox Name="tutkija" Height="21" Width="121" Canvas.Left="586" Canvas.Top="109" TabIndex="15"></TextBox>
+
+            <Label Content="Valitse logo:" Canvas.Left="482" Canvas.Top="133"></Label>
+            <ComboBox Canvas.Left="586" Canvas.Top="136" Width="120" Name="Kuvat" IsTabStop="False">
+                <ComboBoxItem Content="Savonialogo 1" Name="Kuva1" IsSelected="True" Tag=".\Asetukset\kuvat\logot\savonialogo1.jpg"></ComboBoxItem>
+                <ComboBoxItem Content="Savonialogo 2" Name="Kuva5" Tag=".\Asetukset\kuvat\logot\savonialogo5.jpg"></ComboBoxItem>
+                <ComboBoxItem Content="Savonialogo 3 engl" Name="Kuva6" Tag=".\Asetukset\kuvat\logot\savonialogo6.jpg"></ComboBoxItem>
+            </ComboBox>
+
+            <Button Content="Tallenna osoitetiedot" Name="tallennaOsoitetiedot" Canvas.Left="250" Canvas.Top="130" Click="tallennaOsoitetiedot_Click" Width="120" Height="26" Background="#FFDBFAFF" IsTabStop="False"></Button>
+        </Canvas>
+
+        <!--Sideainepitoisuus-->
+        <Canvas Height="176" Canvas.Left="718" Canvas.Top="23" Width="463" Background="Beige" Name="sideainelaskuri"  DataObject.Pasting="sideAineArvot_Pasting">
+            <Label Content="Sideainepitoisuus" Height="41" Width="166" FontSize="20" Canvas.Left="141" Foreground="Orange" Canvas.Top="-9"></Label>
+
+            <Label Content="Koko näytteen paino g (M1):" Canvas.Top="28" Canvas.Left="-3"></Label>
+            <TextBox Name="naytteenPaino" Canvas.Left="154" Height="21" Width="60" Canvas.Top="30" PreviewTextInput="NumberValidationTextBox" TabIndex="20"/>
+
+            <Label Content="Kiviaineksen paino g:" Canvas.Top="85" RenderTransformOrigin="0.467,0.115"/>
+            <TextBox x:Name="nayte"  Height="21" Canvas.Left="154" Canvas.Top="90" Width="60" IsReadOnly="True" PreviewTextInput="NumberValidationTextBox" TabIndex="21" Background="White" BorderBrush="{x:Null}" IsTabStop="False"/>
+
+            <Label Content="Rumpu + näyte g (M2):" Canvas.Top="55" RenderTransformOrigin="0.467,0.115"/>
+            <TextBox Name="rumpujanayte" Canvas.Left="154" Height="21" Width="60" Canvas.Top="60" PreviewTextInput="NumberValidationTextBox" TabIndex="22"/>
+
+            <Label Content="Sideainemäärä g:" Canvas.Top="115"></Label>
+            <TextBox Name="sideainemaara" Canvas.Left="154" Height="21" Width="60" Canvas.Top="120" PreviewTextInput="NumberValidationTextBox" IsReadOnly="True" TabIndex="23" IsTabStop="False" Background="White" BorderBrush="{x:Null}"/>
+
+            <Label Content="Sideainepitoisuus %:" Canvas.Top="145"></Label>
+            <TextBox Name="sideainepitoisuus" Canvas.Left="154" Height="21" Width="60" Canvas.Top="150" PreviewTextInput="NumberValidationTextBox" IsReadOnly="True" TabIndex="24" IsTabStop="False" Background="White" BorderBrush="{x:Null}"/>
+
+            <Label Content="Rummun paino g (R):" Canvas.Top="25" RenderTransformOrigin="0.467,0.115" Canvas.Left="228"></Label>
+            <TextBox x:Name="rummunPaino"  Height="21" Canvas.Left="391" Canvas.Top="30" Width="60" PreviewTextInput="NumberValidationTextBox" RenderTransformOrigin="1.267,0.619" TabIndex="25"/>
+
+            <Label Content="Sentrifuugi + paperi g (sf1):" Canvas.Top="55" RenderTransformOrigin="0.467,0.115" Canvas.Left="228"></Label>
+            <TextBox x:Name="sentrifuugipaperi" Height="21" Canvas.Left="391" Canvas.Top="60" Width="60" PreviewTextInput="NumberValidationTextBox" TabIndex="26"/>
+
+            <Label Content="Sentrif.+paperi+filleri g (sf2):" Canvas.Top="85" RenderTransformOrigin="0.467,0.115" Canvas.Left="228"></Label>
+            <TextBox x:Name="sentrifuugipaperirilleri" Height="21" Canvas.Left="391" Canvas.Top="90" Width="60" PreviewTextInput="NumberValidationTextBox" RenderTransformOrigin="1.417,0.19" TabIndex="27"/>
+
+            <Label Content="Fillerin paino g (F):" Canvas.Top="115" RenderTransformOrigin="0.467,0.115" Canvas.Left="228"></Label>
+            <TextBox x:Name="Filleri"  Height="21" Canvas.Left="391" Canvas.Top="120" Width="60" PreviewTextInput="NumberValidationTextBox" IsReadOnly="True" TabIndex="28" IsTabStop="False" Background="White" BorderBrush="{x:Null}"/>
+
+            <Button x:Name="btnLaskeSideainepitoisuus" Canvas.Left="376" Canvas.Top="145" Width="75" Click="btnLaskeSideainepitoisuus_Click" Content="Laske" TabIndex="29" Height="26"/>
+            <Button x:Name="Tyhjennasideaine" Height="26" Width="67" Canvas.Left="283" Canvas.Top="145" Click="btnTyhjennasideaine_Click" Background="#FFE05A5A" BorderBrush="#FF400101" Foreground="Black" FontSize="14" Content="Tyhjennä" IsTabStop="False"/>
+
+        </Canvas>
+        <!--Seulasarja ja laskukentät-->
+        <Canvas Height="599" Canvas.Top="199" Width="718" Background="BlanchedAlmond" Name="seulaArvot" PreviewKeyDown="seulaArvot_PreviewKeyDown"  DataObject.Pasting="seulaArvot_Pasting">
+            <ComboBox Name="Seula1" Grid.Column="0" Grid.Row="1" Canvas.Top="62" Width="75" Canvas.Left="100" Tag="seula" IsTabStop="False" DropDownClosed="Seula_DropDownClosed">
+            </ComboBox>
+            <ComboBox Name="Seula2" Grid.Column="0" Grid.Row="1" Canvas.Top="89" Height="21" Width="75" Canvas.Left="100" Tag="seula" IsTabStop="False" DropDownClosed="Seula_DropDownClosed">
+            </ComboBox>
+            <ComboBox Name="Seula3" Grid.Column="0" Grid.Row="1" Canvas.Top="115" Height="21" Width="75" Canvas.Left="100" Tag="seula" IsTabStop="False" DropDownClosed="Seula_DropDownClosed">
+            </ComboBox>
+            <ComboBox Name="Seula4" Grid.Column="0" Grid.Row="1" Canvas.Top="141" Height="21" Width="75" Canvas.Left="100" Tag="seula" IsTabStop="False" DropDownClosed="Seula_DropDownClosed">
+            </ComboBox>
+            <ComboBox Name="Seula5" Grid.Column="0" Grid.Row="1" Height="21" Width="75" Canvas.Top="167" Canvas.Left="100" Tag="seula" IsTabStop="False" DropDownClosed="Seula_DropDownClosed">
+            </ComboBox>
+            <ComboBox Name="Seula6" Grid.Column="0" Grid.Row="1" Height="21" Width="75" Canvas.Top="193" Canvas.Left="100" Tag="seula" IsTabStop="False" DropDownClosed="Seula_DropDownClosed">
+            </ComboBox>
+            <ComboBox Name="Seula7" Grid.Column="0" Grid.Row="1" Height="21" Width="75" Canvas.Top="219" Canvas.Left="100" Tag="seula" IsTabStop="False" DropDownClosed="Seula_DropDownClosed">
+            </ComboBox>
+            <ComboBox Name="Seula8" Grid.Column="0" Grid.Row="1" Height="21" Width="75" Canvas.Top="245" Canvas.Left="100" Tag="seula" IsTabStop="False" DropDownClosed="Seula_DropDownClosed">
+            </ComboBox>
+            <ComboBox Name="Seula9" Grid.Column="0" Grid.Row="1" Height="21" Width="75" Canvas.Top="271" Canvas.Left="100" Tag="seula" IsTabStop="False" DropDownClosed="Seula_DropDownClosed">
+            </ComboBox>
+            <ComboBox Name="Seula10" Grid.Column="0" Grid.Row="1" Height="21" Width="75" Canvas.Top="297" Canvas.Left="100" Tag="seula" IsTabStop="False" DropDownClosed="Seula_DropDownClosed">
+            </ComboBox>
+            <ComboBox Name="Seula11" Grid.Column="0" Grid.Row="1" Height="21" Width="75" Canvas.Top="323" Canvas.Left="100" Tag="seula" IsTabStop="False" DropDownClosed="Seula_DropDownClosed">
+            </ComboBox>
+            <ComboBox Name="Seula12" Grid.Column="0" Grid.Row="1" Height="21" Width="75" Canvas.Top="349" Canvas.Left="100" Tag="seula" IsTabStop="False" DropDownClosed="Seula_DropDownClosed">
+            </ComboBox>
+            <ComboBox Name="Seula13" Grid.Column="0" Grid.Row="1" Height="21" Width="75" Canvas.Top="375" Canvas.Left="100" Tag="seula" IsTabStop="False" DropDownClosed="Seula_DropDownClosed">
+            </ComboBox>
+            <ComboBox Name="Seula14" Grid.Column="0" Grid.Row="1" Height="21" Width="75" Canvas.Top="401" Canvas.Left="100" Tag="seula" IsTabStop="False" DropDownClosed="Seula_DropDownClosed">
+            </ComboBox>
+            <ComboBox Name="Seula15" Grid.Column="0" Grid.Row="1" Height="21" Width="75" Canvas.Top="427" Canvas.Left="100" Tag="seula" IsTabStop="False" DropDownClosed="Seula_DropDownClosed">
+            </ComboBox>
+            <ComboBox Name="Seula16" Grid.Column="0" Grid.Row="1" Height="21" Width="75" Canvas.Top="453" Canvas.Left="100" Tag="seula" IsTabStop="False" DropDownClosed="Seula_DropDownClosed">
+            </ComboBox>
+            <Label Content="Pohja" Canvas.Left="110" Canvas.Top="479"></Label>
+
+            <!--Seulalle jäävien arvojen tekstilaatikot-->
+            <TextBox Name="seulaG0" Height="21" Width="75" Canvas.Left="225" Canvas.Top="62" PreviewTextInput="NumberValidationTextBox" Tag="arvo" TabIndex="30"></TextBox>
+            <TextBox Name="seulaG1" Height="21" Width="75" Canvas.Left="225" Canvas.Top="88" PreviewTextInput="NumberValidationTextBox" Tag="arvo" TabIndex="31"></TextBox>
+            <TextBox Name="seulaG2" Height="21" Width="75" Canvas.Left="225" Canvas.Top="114" PreviewTextInput="NumberValidationTextBox" Tag="arvo" TabIndex="32"></TextBox>
+            <TextBox Name="seulaG3" Height="21" Width="75" Canvas.Left="225" Canvas.Top="140" PreviewTextInput="NumberValidationTextBox" Tag="arvo" TabIndex="33"></TextBox>
+            <TextBox Name="seulaG4" Height="21" Width="75" Canvas.Left="225" Canvas.Top="166" PreviewTextInput="NumberValidationTextBox" Tag="arvo" TabIndex="34"></TextBox>
+            <TextBox Name="seulaG5" Height="21" Width="75" Canvas.Left="225" Canvas.Top="192" PreviewTextInput="NumberValidationTextBox" Tag="arvo" TabIndex="35"></TextBox>
+            <TextBox Name="seulaG6" Height="21" Width="75" Canvas.Left="225" Canvas.Top="218" PreviewTextInput="NumberValidationTextBox" Tag="arvo" TabIndex="36"></TextBox>
+            <TextBox Name="seulaG7" Height="21" Width="75" Canvas.Left="225" Canvas.Top="244" PreviewTextInput="NumberValidationTextBox" Tag="arvo" TabIndex="37"></TextBox>
+            <TextBox Name="seulaG8" Height="21" Width="75" Canvas.Left="225" Canvas.Top="270" PreviewTextInput="NumberValidationTextBox" Tag="arvo" TabIndex="38"></TextBox>
+            <TextBox Name="seulaG9" Height="21" Width="75" Canvas.Left="225" Canvas.Top="296" PreviewTextInput="NumberValidationTextBox" Tag="arvo" TabIndex="39"></TextBox>
+            <TextBox Name="seulaG10" Height="21" Width="75" Canvas.Left="225" Canvas.Top="322" PreviewTextInput="NumberValidationTextBox" Tag="arvo" TabIndex="40"></TextBox>
+            <TextBox Name="seulaG11" Height="21" Width="75" Canvas.Left="225" Canvas.Top="348" PreviewTextInput="NumberValidationTextBox" Tag="arvo" TabIndex="41"></TextBox>
+            <TextBox Name="seulaG12" Height="21" Width="75" Canvas.Left="225" Canvas.Top="374" PreviewTextInput="NumberValidationTextBox" Tag="arvo" TabIndex="42"></TextBox>
+            <TextBox Name="seulaG13" Height="21" Width="75" Canvas.Left="225" Canvas.Top="400" PreviewTextInput="NumberValidationTextBox" Tag="arvo" TabIndex="43"></TextBox>
+            <TextBox Name="seulaG14" Height="21" Width="75" Canvas.Left="225" Canvas.Top="426" PreviewTextInput="NumberValidationTextBox" Tag="arvo" TabIndex="44"></TextBox>
+            <TextBox Name="seulaG15" Height="21" Width="75" Canvas.Left="225" Canvas.Top="452" PreviewTextInput="NumberValidationTextBox" Tag="arvo" TabIndex="45"></TextBox>
+            <TextBox Name="seulaG16" Height="21" Width="75" Canvas.Left="225" Canvas.Top="478" PreviewTextInput="NumberValidationTextBox" Tag="arvo" TabIndex="46"></TextBox>
+
+            <!--Seulalle jäävien arvojen tekstilaatikot-->
+            <TextBox Name="seulapros1" Height="21" Width="75" Canvas.Left="350" Canvas.Top="62" IsReadOnly="True" Background="Aqua" Tag="tulos1" IsTabStop="False"></TextBox>
+            <TextBox Name="seulapros2" Height="21" Width="75" Canvas.Left="350" Canvas.Top="88" IsReadOnly="True" Background="Aqua" Tag="tulos1" IsTabStop="False"></TextBox>
+            <TextBox Name="seulapros3" Height="21" Width="75" Canvas.Left="350" Canvas.Top="114" IsReadOnly="True" Background="Aqua" Tag="tulos1" IsTabStop="False"></TextBox>
+            <TextBox Name="seulapros4" Height="21" Width="75" Canvas.Left="350" Canvas.Top="140" IsReadOnly="True" Background="Aqua" Tag="tulos1" IsTabStop="False"></TextBox>
+            <TextBox Name="seulapros5" Height="21" Width="75" Canvas.Left="350" Canvas.Top="166" IsReadOnly="True" Background="Aqua" Tag="tulos1" IsTabStop="False"></TextBox>
+            <TextBox Name="seulapros6" Height="21" Width="75" Canvas.Left="350" Canvas.Top="192" IsReadOnly="True" Background="Aqua" Tag="tulos1" IsTabStop="False"></TextBox>
+            <TextBox Name="seulapros7" Height="21" Width="75" Canvas.Left="350" Canvas.Top="218" IsReadOnly="True" Background="Aqua" Tag="tulos1" IsTabStop="False"></TextBox>
+            <TextBox Name="seulapros8" Height="21" Width="75" Canvas.Left="350" Canvas.Top="244" IsReadOnly="True" Background="Aqua" Tag="tulos1" IsTabStop="False"></TextBox>
+            <TextBox Name="seulapros9" Height="21" Width="75" Canvas.Left="350" Canvas.Top="270" IsReadOnly="True" Background="Aqua" Tag="tulos1" IsTabStop="False"></TextBox>
+            <TextBox Name="seulapros10" Height="21" Width="75" Canvas.Left="350" Canvas.Top="296" IsReadOnly="True" Background="Aqua" Tag="tulos1" IsTabStop="False"></TextBox>
+            <TextBox Name="seulapros11" Height="21" Width="75" Canvas.Left="350" Canvas.Top="322" IsReadOnly="True" Background="Aqua" Tag="tulos1" IsTabStop="False"></TextBox>
+            <TextBox Name="seulapros12" Height="21" Width="75" Canvas.Left="350" Canvas.Top="348" IsReadOnly="True" Background="Aqua" Tag="tulos1" IsTabStop="False"></TextBox>
+            <TextBox Name="seulapros13" Height="21" Width="75" Canvas.Left="350" Canvas.Top="374" IsReadOnly="True" Background="Aqua" Tag="tulos1" IsTabStop="False"></TextBox>
+            <TextBox Name="seulapros14" Height="21" Width="75" Canvas.Left="350" Canvas.Top="400" IsReadOnly="True" Background="Aqua" Tag="tulos1" IsTabStop="False"></TextBox>
+            <TextBox Name="seulapros15" Height="21" Width="75" Canvas.Left="350" Canvas.Top="426" IsReadOnly="True" Background="Aqua" Tag="tulos1" IsTabStop="False"></TextBox>
+            <TextBox Name="seulapros16" Height="21" Width="75" Canvas.Left="350" Canvas.Top="452" IsReadOnly="True" Background="Aqua" Tag="tulos1" IsTabStop="False"></TextBox>
+            <TextBox Name="seulapros17" Height="21" Width="75" Canvas.Left="350" Canvas.Top="478" IsReadOnly="True" Background="Aqua" Tag="tulos1" IsTabStop="False"></TextBox>
+
+            <!--Läpäisy % tekstilaatikot-->
+            <TextBox Name="lapaisypros1" Height="21" Width="75" Canvas.Left="475" Canvas.Top="62" IsReadOnly="True" Background="#ffccb3" Tag="tulos2" IsTabStop="False"></TextBox>
+            <TextBox Name="lapaisypros2" Height="21" Width="75" Canvas.Left="475" Canvas.Top="88" IsReadOnly="True" Background="#ffccb3" Tag="tulos2" IsTabStop="False"></TextBox>
+            <TextBox Name="lapaisypros3" Height="21" Width="75" Canvas.Left="475" Canvas.Top="114" IsReadOnly="True" Background="#ffccb3" Tag="tulos2" IsTabStop="False"></TextBox>
+            <TextBox Name="lapaisypros4" Height="21" Width="75" Canvas.Left="475" Canvas.Top="140" IsReadOnly="True" Background="#ffccb3" Tag="tulos2" IsTabStop="False"></TextBox>
+            <TextBox Name="lapaisypros5" Height="21" Width="75" Canvas.Left="475" Canvas.Top="166" IsReadOnly="True" Background="#ffccb3" Tag="tulos2" IsTabStop="False"></TextBox>
+            <TextBox Name="lapaisypros6" Height="21" Width="75" Canvas.Left="475" Canvas.Top="192" IsReadOnly="True" Background="#ffccb3" Tag="tulos2" IsTabStop="False"></TextBox>
+            <TextBox Name="lapaisypros7" Height="21" Width="75" Canvas.Left="475" Canvas.Top="218" IsReadOnly="True" Background="#ffccb3" Tag="tulos2" IsTabStop="False"></TextBox>
+            <TextBox Name="lapaisypros8" Height="21" Width="75" Canvas.Left="475" Canvas.Top="244" IsReadOnly="True" Background="#ffccb3" Tag="tulos2" IsTabStop="False"></TextBox>
+            <TextBox Name="lapaisypros9" Height="21" Width="75" Canvas.Left="475" Canvas.Top="270" IsReadOnly="True" Background="#ffccb3" Tag="tulos2" IsTabStop="False"></TextBox>
+            <TextBox Name="lapaisypros10" Height="21" Width="75" Canvas.Left="475" Canvas.Top="296" IsReadOnly="True" Background="#ffccb3" Tag="tulos2" IsTabStop="False"></TextBox>
+            <TextBox Name="lapaisypros11" Height="21" Width="75" Canvas.Left="475" Canvas.Top="322" IsReadOnly="True" Background="#ffccb3" Tag="tulos2" IsTabStop="False"></TextBox>
+            <TextBox Name="lapaisypros12" Height="21" Width="75" Canvas.Left="475" Canvas.Top="348" IsReadOnly="True" Background="#ffccb3" Tag="tulos2" IsTabStop="False"></TextBox>
+            <TextBox Name="lapaisypros13" Height="21" Width="75" Canvas.Left="475" Canvas.Top="374" IsReadOnly="True" Background="#ffccb3" Tag="tulos2" IsTabStop="False"></TextBox>
+            <TextBox Name="lapaisypros14" Height="21" Width="75" Canvas.Left="475" Canvas.Top="400" IsReadOnly="True" Background="#ffccb3" Tag="tulos2" IsTabStop="False"></TextBox>
+            <TextBox Name="lapaisypros15" Height="21" Width="75" Canvas.Left="475" Canvas.Top="426" IsReadOnly="True" Background="#ffccb3" Tag="tulos2" IsTabStop="False"></TextBox>
+            <TextBox Name="lapaisypros16" Height="21" Width="75" Canvas.Left="475" Canvas.Top="452" IsReadOnly="True" Background="#ffccb3" Tag="tulos2" IsTabStop="False"></TextBox>
+            <!--Märkäpaino ja kosteus %-->
+            <Label x:Name="lbMarkaPaino" Content="Märkäpaino g:" Canvas.Left="597" Canvas.Top="53"></Label>
+            <TextBox Name="tbMarkaPaino" Height="21" Width="76" Canvas.Top="79" Canvas.Left="602" Tag="markapaino" TabIndex="47"></TextBox>
+
+            <Label x:Name="lbKosteusP" Content="Kosteus -%" Canvas.Top="110" Canvas.Left="605"></Label>
+            <TextBox Name="tbKosteusP" Height="21" Width="76" Canvas.Left="602" Canvas.Top="136" IsReadOnly="True" BorderBrush="{x:Null}" Tag="kosteuspros" IsTabStop="False"></TextBox>
+            <!--Laske nappi-->
+            <Button x:Name="btnSeulaLaske" Height="53" Width="94" Canvas.Left="588" Canvas.Top="523" Click="LaskeSeula_Click" Background="#FFD0FF8B" BorderBrush="#FF2F8100" FontSize="16" RenderTransformOrigin="0.298,0.283" TabIndex="48">Laske</Button>
+            <Button x:Name="EmptyValues" Height="53" Width="94" Canvas.Left="69" Canvas.Top="523" Click="EmptyFields_Click" Background="#FFE05A5A" BorderBrush="#FF400101" Foreground="Black" FontSize="14" Content="Tyhjää arvot" IsTabStop="False"/>
+            <Label x:Name="lblDesimaali" Canvas.Left="585" Canvas.Top="390">
+                <TextBlock
+                    TextAlignment="Center"
+                    Text="Tulosten tarkkuus&#xA;desimaaleissa:" Width="92"/>
+            </Label>
+            <ComboBox x:Name="dbDesimaali" Canvas.Top="438" Width="51" Canvas.Left="611" Height="26" Tag="desimaali" TabIndex="47" IsTabStop="False">
+                <ComboBoxItem IsSelected="True" Tag="1" Content="1"/>
+                <ComboBoxItem Tag="2" Content="2"/>
+                <ComboBoxItem Tag="3" Content="3"/>
+            </ComboBox>
+            <Label Content="Punnittu yht. (g):" Canvas.Left="275" Canvas.Top="534" FontSize="14"/>
+            <TextBox x:Name="punnittuYhteensa" Height="23" Width="68" Canvas.Left="385" Canvas.Top="538" IsReadOnly="True" Tag="yhteispaino" IsTabStop="False" BorderBrush="{x:Null}"/>
+            <Label Content="Seula" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFFFB374" Foreground="#FFB80202" Width="125" FontSize="14" Canvas.Left="100"/>
+            <Label Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FFFFB374" Foreground="#FFB80202" Width="100" FontSize="14"/>
+            <Label Content="Seulalle jäi (g)" Canvas.Left="225" Background="#FFFFB374" Foreground="#FFB80202" Width="125" FontSize="14"/>
+            <Label Content="Seulalle jäi %" Canvas.Left="350" Foreground="#FFB80202" Background="#FFFFB374" Width="125" FontSize="14"/>
+            <Label Content="Läpäisy %" Canvas.Left="475" Background="#FFFFB274" Foreground="#FFB80202" Width="243" FontSize="14"/>
+
+        </Canvas>
+        <Canvas Height="599" Canvas.Left="718" Canvas.Top="199" Width="463" Background="Khaki" Name="ohjeAlue" PreviewKeyDown="ohjeAlue_PreviewKeyDown"  DataObject.Pasting="ohjeAlue_Pasting">
+            <!--Ohjealue-->
+            <Label Content="Seula #mm" Canvas.Left="92" Canvas.Top="21" Tag="seulaValue"></Label>
+            <!--Seulat-->
+            <TextBox Name="seulaValue1" Height="21" Width="68" Canvas.Top="53" IsReadOnly="True" Canvas.Left="94" Tag="seulaValue" IsTabStop="False" BorderBrush="{x:Null}"></TextBox>
+            <TextBox Name="seulaValue2" Height="21" Width="68" Canvas.Top="79" IsReadOnly="True" Canvas.Left="94" Tag="seulaValue" IsTabStop="False" BorderBrush="{x:Null}"></TextBox>
+            <TextBox Name="seulaValue3" Height="21" Width="68" Canvas.Top="105" IsReadOnly="True" Canvas.Left="94" Tag="seulaValue" IsTabStop="False" BorderBrush="{x:Null}"></TextBox>
+            <TextBox Name="seulaValue4" Height="21" Width="68" Canvas.Top="131" IsReadOnly="True" Canvas.Left="94" Tag="seulaValue" IsTabStop="False" BorderBrush="{x:Null}"></TextBox>
+            <TextBox Name="seulaValue5" Height="21" Width="68" Canvas.Top="157" IsReadOnly="True" Canvas.Left="94" Tag="seulaValue" IsTabStop="False" BorderBrush="{x:Null}"></TextBox>
+            <TextBox Name="seulaValue6" Height="21" Width="68" Canvas.Top="183" IsReadOnly="True" Canvas.Left="94" Tag="seulaValue" IsTabStop="False" BorderBrush="{x:Null}"></TextBox>
+            <TextBox Name="seulaValue7" Height="21" Width="68" Canvas.Top="209" IsReadOnly="True" Canvas.Left="94" Tag="seulaValue" IsTabStop="False" BorderBrush="{x:Null}"></TextBox>
+            <TextBox Name="seulaValue8" Height="21" Width="68" Canvas.Top="235" IsReadOnly="True" Canvas.Left="94" Tag="seulaValue" IsTabStop="False" BorderBrush="{x:Null}"></TextBox>
+            <TextBox Name="seulaValue9" Height="21" Width="68" Canvas.Top="261" IsReadOnly="True" Canvas.Left="94" Tag="seulaValue" IsTabStop="False" BorderBrush="{x:Null}"></TextBox>
+            <TextBox Name="seulaValue10" Height="21" Width="68" Canvas.Top="287" IsReadOnly="True" Canvas.Left="94" Tag="seulaValue" IsTabStop="False" BorderBrush="{x:Null}"></TextBox>
+            <TextBox Name="seulaValue11" Height="21" Width="68" Canvas.Top="313" IsReadOnly="True" Canvas.Left="94" Tag="seulaValue" IsTabStop="False" BorderBrush="{x:Null}"></TextBox>
+            <TextBox Name="seulaValue12" Height="21" Width="68" Canvas.Top="339" IsReadOnly="True" Canvas.Left="94" Tag="seulaValue" IsTabStop="False" BorderBrush="{x:Null}"></TextBox>
+            <TextBox Name="seulaValue13" Height="21" Width="68" Canvas.Top="365" IsReadOnly="True" Canvas.Left="94" Tag="seulaValue" IsTabStop="False" BorderBrush="{x:Null}"></TextBox>
+            <TextBox Name="seulaValue14" Height="21" Width="68" Canvas.Top="391" IsReadOnly="True" Canvas.Left="94" Tag="seulaValue" IsTabStop="False" BorderBrush="{x:Null}"></TextBox>
+            <TextBox Name="seulaValue15" Height="21" Width="68" Canvas.Top="417" IsReadOnly="True" Canvas.Left="94" Tag="seulaValue" IsTabStop="False" BorderBrush="{x:Null}"></TextBox>
+            <TextBox Name="seulaValue16" Height="21" Width="68" Canvas.Top="443" IsReadOnly="True" Canvas.Left="94" Tag="seulaValue" IsTabStop="False" BorderBrush="{x:Null}"></TextBox>
+
+            <!--Alarajat-->
+            <Label Content="Alaraja" Canvas.Left="214" Canvas.Top="21"></Label>
+            <TextBox Name="alaRajaValue1" Height="21" Width="68" Canvas.Top="53" Canvas.Left="204" PreviewTextInput="NumberValidationTextBox" Tag="Ala" TabIndex="49"></TextBox>
+            <TextBox Name="alaRajaValue2" Height="21" Width="68" Canvas.Top="79" Canvas.Left="204" PreviewTextInput="NumberValidationTextBox" Tag="Ala" TabIndex="50"></TextBox>
+            <TextBox Name="alaRajaValue3" Height="21" Width="68" Canvas.Top="105" Canvas.Left="204" PreviewTextInput="NumberValidationTextBox" Tag="Ala" TabIndex="51"></TextBox>
+            <TextBox Name="alaRajaValue4" Height="21" Width="68" Canvas.Top="131" Canvas.Left="204" PreviewTextInput="NumberValidationTextBox" Tag="Ala" TabIndex="52"></TextBox>
+            <TextBox Name="alaRajaValue5" Height="21" Width="68" Canvas.Top="157" Canvas.Left="204" PreviewTextInput="NumberValidationTextBox" Tag="Ala" TabIndex="53"></TextBox>
+            <TextBox Name="alaRajaValue6" Height="21" Width="68" Canvas.Top="183" Canvas.Left="204" PreviewTextInput="NumberValidationTextBox" Tag="Ala" TabIndex="54"></TextBox>
+            <TextBox Name="alaRajaValue7" Height="21" Width="68" Canvas.Top="209" Canvas.Left="204" PreviewTextInput="NumberValidationTextBox" Tag="Ala" TabIndex="55"></TextBox>
+            <TextBox Name="alaRajaValue8" Height="21" Width="68" Canvas.Top="235" Canvas.Left="204" PreviewTextInput="NumberValidationTextBox" Tag="Ala" TabIndex="56"></TextBox>
+            <TextBox Name="alaRajaValue9" Height="21" Width="68" Canvas.Top="261" Canvas.Left="204" PreviewTextInput="NumberValidationTextBox" Tag="Ala" TabIndex="57"></TextBox>
+            <TextBox Name="alaRajaValue10" Height="21" Width="68" Canvas.Top="287" Canvas.Left="204" PreviewTextInput="NumberValidationTextBox" Tag="Ala" TabIndex="58"></TextBox>
+            <TextBox Name="alaRajaValue11" Height="21" Width="68" Canvas.Top="313" Canvas.Left="204" PreviewTextInput="NumberValidationTextBox" Tag="Ala" TabIndex="59"></TextBox>
+            <TextBox Name="alaRajaValue12" Height="21" Width="68" Canvas.Top="339" Canvas.Left="204" PreviewTextInput="NumberValidationTextBox" Tag="Ala" TabIndex="60"></TextBox>
+            <TextBox Name="alaRajaValue13" Height="21" Width="68" Canvas.Top="365" Canvas.Left="204" PreviewTextInput="NumberValidationTextBox" Tag="Ala" TabIndex="61"/>
+            <TextBox Name="alaRajaValue14" Height="21" Width="68" Canvas.Top="391" Canvas.Left="204" PreviewTextInput="NumberValidationTextBox" Tag="Ala" TabIndex="62"></TextBox>
+            <TextBox Name="alaRajaValue15" Height="21" Width="68" Canvas.Top="417" Canvas.Left="204" PreviewTextInput="NumberValidationTextBox" Tag="Ala" TabIndex="63"></TextBox>
+            <TextBox Name="alaRajaValue16" Height="21" Width="68" Canvas.Top="443" Canvas.Left="204" PreviewTextInput="NumberValidationTextBox" Tag="Ala" TabIndex="64"></TextBox>
+
+            <!--Ylärajat-->
+            <Label Content="Yläraja" Canvas.Left="296" Canvas.Top="21"></Label>
+            <TextBox Name="ylaRajaValue1" Height="21" Width="68" Canvas.Top="53" Canvas.Left="288" PreviewTextInput="NumberValidationTextBox" Tag="Yla" TabIndex="65"></TextBox>
+            <TextBox Name="ylaRajaValue2" Height="21" Width="68" Canvas.Top="79" Canvas.Left="288" PreviewTextInput="NumberValidationTextBox" Tag="Yla" TabIndex="66"></TextBox>
+            <TextBox Name="ylaRajaValue3" Height="21" Width="68" Canvas.Top="105" Canvas.Left="288" PreviewTextInput="NumberValidationTextBox" Tag="Yla" TabIndex="67"></TextBox>
+            <TextBox Name="ylaRajaValue4" Height="21" Width="68" Canvas.Top="131" Canvas.Left="288" PreviewTextInput="NumberValidationTextBox" Tag="Yla" TabIndex="68"></TextBox>
+            <TextBox Name="ylaRajaValue5" Height="21" Width="68" Canvas.Top="157" Canvas.Left="288" PreviewTextInput="NumberValidationTextBox" Tag="Yla" TabIndex="69"></TextBox>
+            <TextBox Name="ylaRajaValue6" Height="21" Width="68" Canvas.Top="183" Canvas.Left="288" PreviewTextInput="NumberValidationTextBox" Tag="Yla" TabIndex="70"></TextBox>
+            <TextBox Name="ylaRajaValue7" Height="21" Width="68" Canvas.Top="209" Canvas.Left="288" PreviewTextInput="NumberValidationTextBox" Tag="Yla" TabIndex="71"></TextBox>
+            <TextBox Name="ylaRajaValue8" Height="21" Width="68" Canvas.Top="235" Canvas.Left="288" PreviewTextInput="NumberValidationTextBox" Tag="Yla" TabIndex="72"></TextBox>
+            <TextBox Name="ylaRajaValue9" Height="21" Width="68" Canvas.Top="261" Canvas.Left="288" PreviewTextInput="NumberValidationTextBox" Tag="Yla" TabIndex="73"></TextBox>
+            <TextBox Name="ylaRajaValue10" Height="21" Width="68" Canvas.Top="287" Canvas.Left="288" PreviewTextInput="NumberValidationTextBox" Tag="Yla" TabIndex="74"></TextBox>
+            <TextBox Name="ylaRajaValue11" Height="21" Width="68" Canvas.Top="313" Canvas.Left="288" PreviewTextInput="NumberValidationTextBox" Tag="Yla" TabIndex="75"></TextBox>
+            <TextBox Name="ylaRajaValue12" Height="21" Width="68" Canvas.Top="339" Canvas.Left="288" PreviewTextInput="NumberValidationTextBox" Tag="Yla" TabIndex="76"></TextBox>
+            <TextBox Name="ylaRajaValue13" Height="21" Width="68" Canvas.Top="365" Canvas.Left="288" PreviewTextInput="NumberValidationTextBox" Tag="Yla" TabIndex="77"></TextBox>
+            <TextBox Name="ylaRajaValue14" Height="21" Width="68" Canvas.Top="391" Canvas.Left="288" PreviewTextInput="NumberValidationTextBox" Tag="Yla" TabIndex="78"></TextBox>
+            <TextBox Name="ylaRajaValue15" Height="21" Width="68" Canvas.Top="417" Canvas.Left="288" PreviewTextInput="NumberValidationTextBox" Tag="Yla" TabIndex="79"></TextBox>
+            <TextBox Name="ylaRajaValue16" Height="21" Width="68" Canvas.Top="443" Canvas.Left="288" PreviewTextInput="NumberValidationTextBox" Tag="Yla" TabIndex="80"></TextBox>
+
+            <!--Tallenna ja tyhjennä napit-->
+            <Button x:Name="btnTyhjennaaOhjeAlue" Height="32" Width="162" Canvas.Left="254" Canvas.Top="494" Click="btnTyhjennaOhjeAlue_Click" IsTabStop="False" Background="#FFE05A5A" BorderBrush="#FF400101">Tyhjennä ohjealue</Button>
+            <Button x:Name="btnNaytaKaavio" Content="Näytä rakeisuuskäyrä" Canvas.Left="50" Canvas.Top="494" Width="162" Height="32" FontSize="16" Background="#FFD0FF8B" BorderBrush="#FF2F8100" Click="btnNaytaKaavioM_Click" TabIndex="82"/>
+        </Canvas>
+
+    </Canvas>
+</Window>

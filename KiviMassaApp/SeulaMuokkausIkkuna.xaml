@@ -1,0 +1,27 @@
+﻿<Window x:Class="KiviMassaApp.SeulaMuokkausIkkuna"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KiviMassaApp"
+        mc:Ignorable="d"
+        Title="Muokkaa seuloja" Height="457.334" Width="300" ShowInTaskbar="true"  WindowStartupLocation="Manual" Topmost="True" Closed="Window_Closed">
+    <Grid>
+        <ListBox x:Name="lbSeulaLista" HorizontalAlignment="Left" Height="346" Margin="36,24,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbUusiSeula" HorizontalAlignment="Left" Height="23" Margin="170,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="92" PreviewTextInput="NumberValidationTextBox"/>
+        <Label Content="Uusi seula:" HorizontalAlignment="Left" Margin="183,32,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnUusiSeula" Content="Lisää seula" HorizontalAlignment="Left" Margin="187,86,0,0" VerticalAlignment="Top" Width="75" Click="btnUusiSeula_Click"/>
+        <Button x:Name="btnPoistaSeula" HorizontalAlignment="Left" Margin="187,122,0,0" VerticalAlignment="Top" Width="75" Height="39" BorderBrush="#FF630000" Background="#FFDA6767" Click="btnPoistaSeula_Click">
+            <TextBlock
+                    TextAlignment="Center"
+                 Text="Poista valittu&#x0a;seula" Width="71"/>
+        </Button>
+        <Button x:Name="btnTallenna" Content="Tallenna" HorizontalAlignment="Left" Margin="187,329,0,0" VerticalAlignment="Top" Width="75" Height="41" Click="btnTallenna_Click"/>
+        <Button x:Name="btnPalautaDefault" Content="Palauta alkuperäiset seula-arvot" HorizontalAlignment="Left" Margin="68,384,0,0" VerticalAlignment="Top" Width="194" Click="btnPalautaDefault_Click"/>
+        <Label x:Name="lblTallennusViesti" HorizontalAlignment="Left" Margin="161,217,0,0" VerticalAlignment="Top" Width="121">
+            <TextBlock
+                TextAlignment="Center" Width="111" x:Name="lbltallennusViestiMsg"/>
+        </Label>
+
+    </Grid>
+</Window>
